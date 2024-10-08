@@ -35,6 +35,6 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/privat
 ```
 ![cert](script-cert.png)
 
-[![Descargar Script](https://img.shields.io/badge/Descargar_Script-green?style=for-the-badge&logo=github)]()
+[![Descargar Script](https://img.shields.io/badge/Descargar_Script-green?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Marina-MM285/Unidad2_IAW-PHP/refs/heads/P2_ssl/Certificado_SSL/install_lamp.sh)
 
 
