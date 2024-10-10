@@ -10,7 +10,6 @@ Introducimos unos datos que se añadirán al certificado.
 En mi caso he añadido los siguientes:
 ![cert](crearcertificado.png)
 
---------------------------------------------------------------------------------------------
 
 ## Automatizar la creación de un certificado autofirmado
 Crearemos un script bash donde especificaremos los argumentos que le pasaremos al comando
@@ -35,6 +34,12 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/privat
 ```
 ![cert](script-cert.png)
 
-[![Descargar Script](https://img.shields.io/badge/Descargar_Script-green?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Marina-MM285/Unidad2_IAW-PHP/refs/heads/P2_ssl/Certificado_SSL/install_lamp.sh)
+
+## Mi Script
+
+Puedes descargar el script haciendo clic en el siguiente botón:
+
+[Paco cabron](../../install_lamp.sh){ .md-button .md-button--primary }
+
 
 
