@@ -110,6 +110,7 @@ y lo editamos.
 6. Modificamos el fichero /etc/hosts
 
      * sudo nano /etc/hosts
+
 ![hosts](hosts.png)
 
 
