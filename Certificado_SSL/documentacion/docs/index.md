@@ -100,18 +100,23 @@ y lo editamos.
        * sudo systemctl restart apache2
 ![a2enmod](rewrite.png)
 
-       * sudo systemctl status apache2
+      * sudo systemctl status apache2
 ![status2](status2.png)
 
 
 5. Nos aseguramos de que el puerto 443 esté abierto en las reglas del firewall para permitir  el trafico hhtps.
 ![iptables](iptables.png)
 
+6. Modificamos el fichero /etc/hosts
+
+     * sudo nano /etc/hosts
+![hosts](hosts.png)
+
 
 Una vez hecho todo esto, abriremos un navegador y accederemos al nombre de nuestro dominio.
 En mi caso será:
 ```
-https://practica-certificado.local.
+https://practica-certificado.local
 ```
 
 
