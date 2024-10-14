@@ -331,6 +331,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerrequisitos" class="md-nav__link">
+    Prerrequisitos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#instalacion-de-phpmyadmin" class="md-nav__link">
     Instalación de phpMyAdmin
   </a>
@@ -401,6 +408,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerrequisitos" class="md-nav__link">
+    Prerrequisitos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#instalacion-de-phpmyadmin" class="md-nav__link">
     Instalación de phpMyAdmin
   </a>
@@ -444,13 +458,35 @@
 
 
 <h1 id="instalar-configurar-y-securizar-phpmyadmin">Instalar, configurar y securizar phpMyAdmin</h1>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Antes de instalar PHP, deberías instalar:
+* Apache (hecho en la práctica anterior)
+* MySQL
+  * sudo apt update
+  * sudo apt install mysql-server</p>
+<p><img alt="mysql" src="mysql-server.png" /></p>
 <h2 id="instalacion-de-phpmyadmin">Instalación de phpMyAdmin</h2>
 <ol>
 <li>Instala phpMyAdmin junto con las extensiones PHP necesarias.</li>
+<li>sudo apt install php-mbstring php-zip php-gd php-json php-curl</li>
 </ol>
 <pre><code>php-mbstring, php-zip, php-gd, php-json, php-curl
 </code></pre>
-<ol>
+<p><img alt="php-instalacion" src="instalar-php.png" />
+* sudo apt install php libapache2-mod-php</p>
+<p><img alt="php-instalacion" src="mas-php.png" /></p>
+<p>Para comprobar que hemos instalado bien php crearemos un archivo con la siguiente información y lo buscaremos a través del navegador.
+* sudo nano /var/www/info.php</p>
+<pre><code>&lt;?php
+phpinfo();
+?&gt;
+</code></pre>
+<ul>
+<li>http://<em>IP</em>/<em>nombre_archivo</em></li>
+<li>
+<p>En mi caso será * http://10.10.10.196/info.php
+<img alt="php-funciona" src="funciona-php.png" /></p>
+</li>
 <li>
 <p>Configurar phpMyAdmin para que funcione con Apache.</p>
 </li>
@@ -458,7 +494,7 @@
 <p>Habilita la extensión mbstring y reinicia Apache</p>
 </li>
 <li>sudo systemctl restart apache</li>
-</ol>
+</ul>
 <hr />
 <h2 id="configuracion-del-acceso-por-contrasena-para-la-cuenta-root-de-mysql">Configuración del Acceso por Contraseña para la Cuenta Root de MySQL</h2>
 <ol>
