@@ -1,16 +1,39 @@
 # Instalar, configurar y securizar phpMyAdmin
 
+## Prerrequisitos
+Antes de instalar PHP, deberías instalar:
+* Apache (hecho en la práctica anterior)
+* MySQL
+  * sudo apt update
+  * sudo apt install mysql-server
+
+![mysql](mysql-server.png)
+
 
 ## Instalación de phpMyAdmin
 1. Instala phpMyAdmin junto con las extensiones PHP necesarias.
+* sudo apt install php-mbstring php-zip php-gd php-json php-curl
 ```
 php-mbstring, php-zip, php-gd, php-json, php-curl
 ```
+![php-instalacion](instalar-php.png)
+* sudo apt install php libapache2-mod-php
+
+![php-instalacion](mas-php.png)
+
+Para comprobar que hemos instalado bien php crearemos un archivo con la siguiente información y lo buscaremos a través del navegador.
+* sudo nano /var/www/info.php
+```
+<?php
+phpinfo();
+?>
+```
+* http://*IP*/*nombre_archivo*
+  * En mi caso será * http://10.10.10.196/info.php
+![php-funciona](funciona-php.png)
 
 
-
-
-2. Configurar phpMyAdmin para que funcione con Apache.
+1. Configurar phpMyAdmin para que funcione con Apache.
 
 
 
