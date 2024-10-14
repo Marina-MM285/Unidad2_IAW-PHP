@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creacion-y-configuracion-de-un-certificado-ssltls-autofirmado-en-apche" class="md-skip">
+        <a href="#phpmyadmin" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Creación y configuración de un certificado SSL/TLS autofirmado en Apche
+              phpMyAdmin
             
           </span>
         </div>
@@ -199,7 +199,7 @@
           
   
   <span class="md-ellipsis">
-    Creación y configuración de un certificado SSL/TLS autofirmado en Apche
+    phpMyAdmin
   </span>
   
 
@@ -210,7 +210,7 @@
         
   
   <span class="md-ellipsis">
-    Creación y configuración de un certificado SSL/TLS autofirmado en Apche
+    phpMyAdmin
   </span>
   
 
@@ -232,29 +232,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creacion-del-certificado-autofirmado" class="md-nav__link">
-    Creación del certificado autofirmado
+  <a href="#commands" class="md-nav__link">
+    Commands
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#automatizar-la-creacion-de-un-certificado-autofirmado" class="md-nav__link">
-    Automatizar la creación de un certificado autofirmado
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#script" class="md-nav__link">
-    Script
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuracion-del-host-virtual-con-ssltsl-en-el-servidor-apache" class="md-nav__link">
-    Configuración del host virtual con SSL/TSL en el servidor Apache
+  <a href="#project-layout" class="md-nav__link">
+    Project layout
   </a>
   
 </li>
@@ -294,29 +280,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creacion-del-certificado-autofirmado" class="md-nav__link">
-    Creación del certificado autofirmado
+  <a href="#commands" class="md-nav__link">
+    Commands
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#automatizar-la-creacion-de-un-certificado-autofirmado" class="md-nav__link">
-    Automatizar la creación de un certificado autofirmado
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#script" class="md-nav__link">
-    Script
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuracion-del-host-virtual-con-ssltsl-en-el-servidor-apache" class="md-nav__link">
-    Configuración del host virtual con SSL/TSL en el servidor Apache
+  <a href="#project-layout" class="md-nav__link">
+    Project layout
   </a>
   
 </li>
@@ -336,125 +308,9 @@
                   
 
 
-<h1 id="creacion-y-configuracion-de-un-certificado-ssltls-autofirmado-en-apche">Creación y configuración de un certificado SSL/TLS autofirmado en Apche</h1>
-<h2 id="creacion-del-certificado-autofirmado">Creación del certificado autofirmado</h2>
-<p>Para crear el certificado autofirmado utilidadopenssl usaremos el siguiente comando: </p>
-<pre><code>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-</code></pre>
-<p>Introducimos unos datos que se añadirán al certificado.
-En mi caso he añadido los siguientes:
-<img alt="cert" src="crearcertificado.png" /></p>
-<h2 id="automatizar-la-creacion-de-un-certificado-autofirmado">Automatizar la creación de un certificado autofirmado</h2>
-<p>Crearemos un script bash donde especificaremos los argumentos que le pasaremos al comando
-anterior a través del parámetro <strong>-subj</strong>.</p>
-<pre><code>#!/bin/bash
-set -x
-
-# Variables con los datos del certificado
-OPENSSL_COUNTRY=&quot;ES&quot;
-OPENSSL_PROVINCE=&quot;Valencia&quot;
-OPENSSL_LOCALITY=&quot;Gandia&quot;
-OPENSSL_ORGANIZATION=&quot;IES Jaume II el Just&quot;
-OPENSSL_ORGUNIT=&quot;Departamento de Informatica&quot;
-OPENSSL_COMMON_NAME=&quot;practica-certificado.local&quot;
-OPENSSL_EMAIL=&quot;marina@ieseljust.com&quot;
-
-# Creación del certificado
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt -subj &quot;/C=$OPENSSL_COUNTRY/ST=$OPENSSL_PROVINCE/L=$OPENSSL_LOCALITY/O=$OPENSSL_ORGANIZATION/OU=$OPENSSL_ORGUNIT/CN=$OPENSSL_COMMON_NAME/emailAddress=$OPENSSL_EMAIL&quot;
-
-</code></pre>
-<p><img alt="cert" src="script-cert.png" /></p>
-<h2 id="script">Script</h2>
-<p>Puedes descargar el script haciendo clic en el siguiente botón:</p>
-<p><a class="md-button md-button--primary" href="install_lamp.sh">Descargar Script</a></p>
-<h2 id="configuracion-del-host-virtual-con-ssltsl-en-el-servidor-apache">Configuración del host virtual con SSL/TSL en el servidor Apache</h2>
-<p>Copiamos el archivo "default-ssl.conf", que es la configuración del VirtualHost, donde habilitaremos el tráfico http
-y lo editamos.</p>
-<ul>
-<li>sudo cd /et/apache2/sites-available</li>
-<li>sudo cp default-ssl.conf certificado-ssl.conf </li>
-<li>sudo nano certificado-ssl.conf</li>
-</ul>
-<pre><code>&lt;VirtualHost *:443&gt;
-    #ServerName practica-certificado.local
-    DocumentRoot/var/www/html
-    DirectoryIndex index.php index.html
-    SSLEngine on
-    SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-    SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
-&lt;/VirtualHost&gt;
-</code></pre>
-<ol>
-<li>
-<p>Habilitaremos el VirtualHost que acabamos de configurar</p>
-<ul>
-<li>sudo a2ensite certificado-ssl.conf
-<img alt="a2ensite" src="cert-ssl-conf.png" /></li>
-</ul>
-</li>
-<li>
-<p>Habilitaremos el módulo SSL en Apache y reiniciaremos el servicio</p>
-<ul>
-<li>sudo a2enmod ssl</li>
-<li>
-<p>sudo systemctl restart apache2
-<img alt="a2enmod" src="a2enmod.png" /></p>
-</li>
-<li>
-<p>sudo systemctl status apache2
-<img alt="a2enmod" src="status-apache2.png" /></p>
-</li>
-</ul>
-</li>
-<li>
-<p>Copiamos y editamos el VirtualHost de HTTP para que redirija todo el tráfico a HTTPS</p>
-<ul>
-<li>sudo cd /et/apache2/sites-available</li>
-<li>sudo cp 000-default-ssl.conf 000-certificado-ssl.conf </li>
-<li>sudo nano 000-certificado-ssl.conf</li>
-</ul>
-</li>
-</ol>
-<pre><code>    &lt;VirtualHost *:80&gt;
-        #ServerName practica-certificado.local
-        DocumentRoot/var/www/html
-        #Redirige alpuerto 443 (HTTPS)
-        RewriteEngineOn
-        RewriteCond%{HTTPS} off
-        RewriteRule^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-    &lt;/VirtualHost&gt;
-</code></pre>
-<ol>
-<li>
-<p>Habilitaremos el módulo rewrite y reiniciamos en servicio</p>
-<ul>
-<li>sudo a2enmod rewrite</li>
-<li>
-<p>sudo systemctl restart apache2
-<img alt="a2enmod" src="rewrite.png" /></p>
-</li>
-<li>
-<p>sudo systemctl status apache2
-<img alt="status2" src="status2.png" /></p>
-</li>
-</ul>
-</li>
-<li>
-<p>Nos aseguramos de que el puerto 443 esté abierto en las reglas del firewall para permitir  el trafico hhtps.
-<img alt="iptables" src="iptables.png" /></p>
-</li>
-<li>
-<p>Modificamos el fichero /etc/hosts</p>
-<ul>
-<li>sudo nano /etc/hosts</li>
-</ul>
-</li>
-</ol>
-<p><img alt="hosts" src="hosts.png" /></p>
-<p>Una vez hecho todo esto, abriremos un navegador y accederemos al nombre de nuestro dominio.
-En mi caso será:</p>
-<pre><code>https://practica-certificado.local
-</code></pre>
+<h1 id="phpmyadmin">phpMyAdmin</h1>
+<h2 id="commands">Commands</h2>
+<h2 id="project-layout">Project layout</h2>
 
 
 
