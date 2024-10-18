@@ -43,6 +43,12 @@ Para configurarlo correctamente elejiremnos las siguientes opciones:
   * Asignaremos una contraseña, en mi caso le he puesto:
     * phpmyadmin
 > En mi caso la instalación ya estaba hecha, no he podido poner capturas.
+  * Vamos a habilitar el archivo de configuración de phpmyadmin
+    * cd /etc/phpmyadmin/apache.conf
+    * sudo cp apache.conf /etc/conf-available/phpmyadmin.conf
+    * sudo a2enconf phpmyadmin.conf
+![copiar](copiar-apache.conf.png)
+![habilitar](habilitar-phpmyadmin.conf.png)
 
 
 3. Habilita la extensión mbstring y reinicia Apache
@@ -78,21 +84,33 @@ Para configurarlo correctamente elejiremnos las siguientes opciones:
 
 
 2. Otorgar al nuevo usuario los privilegios apropiados para gestionar las bases de datos a través de phpMyAdmin
+* grant all privileges on *.* to 'marina'@'localhost' with grant option;
+![dar privilegios](privilegios.png)
 
-![]()
-
-
+* Comprobamos que podemos acceder a la interfaz web
+  * https://*your_domain_or_IP*/phpmyadmin
+    * En mi caso será https://*your_domain_or_IP*/phpmyadmin
 
 ------------------------------------------------------------------------
 
 ## Asegurando tu Instancia de phpMyAdmin
 1. Habilitar el uso de sobrescrituras de archivos **.htaccess** en la configuración de Apache para phpMyAdmin.
-
+  * Editamos el archivo **phpmyadmin.con** y le añadimos la línea **AllowOverride All**
+    * sudo nano /etc/apache2/conf-available/phpmyadmin.conf
+    * Tendría que quedar de esta forma:
+```
+<Directory /usr/share/phpmyadmin>
+        Options SymLinksIfOwnerMatch
+        DirectoryIndex index.php
+        AllowOverride All
+        ...  # Otras directivas
+</Directory>
+```
 ![]()
 
 
 
-2. Crear un archivo **.htaccess** en el directorio de phpMyAdmin para implementar autenticación básica.
+1. Crear un archivo **.htaccess** en el directorio de phpMyAdmin para implementar autenticación básica.
 
 ![]()
 
