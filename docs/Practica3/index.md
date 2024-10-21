@@ -72,7 +72,7 @@ Para configurarlo correctamente elejiremnos las siguientes opciones:
 ![cambio de contraseña](contraseña-mysql-root.png)
 
 
-2. Verificar los métodos de autenticación empleados por cada uno de tus usuarios.
+1. Verificar los métodos de autenticación empleados por cada uno de tus usuarios.
   * Entraremos introduciendo la contraseña que le hemos asignado en el paso anterior con el comando:
     * sudo mysql -u root -p
 
