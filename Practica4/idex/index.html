@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Instalar y configurar WordPress - IAW</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Instalar y configurar WordPress";
+        var mkdocs_page_input_path = "Practica4/idex.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> IAW
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Practica2</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Practica2/">Creación y configuración de un certificado SSL/TLS autofirmado en Apche</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Practica3</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Practica3/">Instalar, configurar y securizar phpMyAdmin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Practica4</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Instalar y configurar WordPress</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#instalar-maquinas">Instalar máquinas</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instalar-dependencias">Instalar dependencias</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instalar-wordpress">Instalar WordPress</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configurar-apache-para-wordpress">Configurar Apache para WordPress</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configurar-la-base-de-datos-mysql">Configurar la base de datos MySQL</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#configurar-mysql-para-conexiones-remotas">Configurar MySQL para conexiones remotas</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configurar-wordpress-para-conectarse-a-la-base-de-datos">Configurar WordPress para conectarse a la base de datos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configurar-wordpress">Configurar WordPress</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#escribe-tu-primera-publicacion">Escribe tu primera publicación</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#todas-las-publicaciones">Todas las publicaciones</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mover-a-la-papelera">Mover a la papelera</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#primera-publicacion">Primera publicación</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">IAW</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Practica4</li>
+      <li class="breadcrumb-item active">Instalar y configurar WordPress</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="instalar-y-configurar-wordpress">Instalar y configurar WordPress</h1>
+<h2 id="instalar-maquinas">Instalar máquinas</h2>
+<p>Instalamos 2 máquinas virtuales Ubuntu Server 22.04</p>
+<p>en las egunda maquina hay que instalar el php, mysql-client, apache</p>
+<h2 id="instalar-dependencias">Instalar dependencias</h2>
+<pre><code>sudo apt update
+sudo apt install apache2 \
+                 ghostscript \
+                 libapache2-mod-php \
+                 mysql-server \
+                 php \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip
+</code></pre>
+<p><img alt="dependencias insaladas" src="../instalados-dep.png" /></p>
+<hr />
+<h2 id="instalar-wordpress">Instalar WordPress</h2>
+<p>Vamos a crear el directorio de instalación, ha descargar el archivo de WordPress.org y ha instalar wordpress.</p>
+<pre><code>cd /srv
+sudo mkdir www
+sudo chown www-data: /srv/www
+curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
+</code></pre>
+<p><img alt="crear directori" src="../crear-dir.png" /></p>
+<p><img alt="instalacion wordpres" src="../instalaci%C3%B3-wp.png" /></p>
+<hr />
+<h2 id="configurar-apache-para-wordpress">Configurar Apache para WordPress</h2>
+<p>Crearemos el siguiente sitio apache para wordpress:</p>
+<pre><code>cd /etc/apache2/sites-available
+sudo nano wordpress.conf
+</code></pre>
+<pre><code>&lt;VirtualHost *:80&gt;
+    DocumentRoot /srv/www/wordpress
+    &lt;Directory /srv/www/wordpress&gt;
+        Options FollowSymLinks
+        AllowOverride Limit Options FileInfo
+        DirectoryIndex index.php
+        Require all granted
+    &lt;/Directory&gt;
+    &lt;Directory /srv/www/wordpress/wp-content&gt;
+        Options FollowSymLinks
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+<p><img alt="wordpress.conf" src="../wordpress.conf.png" /></p>
+<ul>
+<li>Habilitamos el sitio:</li>
+</ul>
+<pre><code>sudo a2ensite wordpress
+</code></pre>
+<p><img alt="habilitar wordpress" src="../a2ensite-wp.png" /></p>
+<ul>
+<li>Habilita la reescritura de URL con:</li>
+</ul>
+<pre><code>sudo a2enmod rewrite
+</code></pre>
+<p><img alt="habilitar la rescritura" src="../rescritura.png" /></p>
+<ul>
+<li>Deshabilitamos el sitio predeterminado:</li>
+</ul>
+<pre><code>sudo a2dissite 000-default.conf
+</code></pre>
+<p><img alt="deshabilitar default" src="../deshabilitar-default.png" /></p>
+<ul>
+<li>Recargamos y reiniciamos el apache2 para aplicar los cambios:</li>
+</ul>
+<pre><code>sudo service apache2 reload
+sudo systemctl restart apache2
+sudo systemctl status apache2
+</code></pre>
+<p><img alt="reinicio y comprovacion de que apache2 funciona" src="../reinicio-comprovacion.png" /></p>
+<hr />
+<h2 id="configurar-la-base-de-datos-mysql">Configurar la base de datos MySQL</h2>
+<p>Para configurar WordPress, necesitamos crear una base de datos MySQL.
+La base de datos MySQL se ejecutará en un servidor distinto que Apache y PHP.
+Instalamos una máquina ubuntu server, le instalamos mysql y creamos o modificamos el usuario root.</p>
+<p>Antes de seguir comprobamos que tenemos el <em>mysql-server</em> instalado</p>
+<pre><code>sudo apt update
+sudo apt install mysql-server
+</code></pre>
+<p><img alt="instalacion mysql-server" src="../mysql-server.png" /></p>
+<h3 id="configurar-mysql-para-conexiones-remotas">Configurar MySQL para conexiones remotas</h3>
+<p>Para permitir conexiones remotas a MySQL, modificaremos la configuración de mysqld.</p>
+<pre><code>cd /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo nano mysqld.conf
+</code></pre>
+<p>Buscamos la linea de bind-address. 
+Por defecto MySQL solo permite conexionews desde localhost (127.0.0.1).
+Modificamos el valor por la dirección IP de la máquina donde se está ejecutando
+el servicio de MySQL. Añadimos lo siguiente:</p>
+<pre><code>[mysqld]
+bind-address = 0.0.0.0
+</code></pre>
+<p><em>La ip 0.0.0.0 permite conexiones desde cualquier interfaz de red que tenga la máquina.</em></p>
+<p><img alt="editar archivo" src="../mysqld.cnf.png" />
+<img alt="bind editado" src="../bind.png" /></p>
+<p><em>Antes de seguir nos aseguramos de que tenemos el mysql-client instalado o no podremos hacer los siguientes pasos</em></p>
+<p><img alt="instalar mysql-client" src="../mysql-client.png" /></p>
+<p>Una vez arrancado el segundo servidor, iniciamos sesión en MySQL:</p>
+<pre><code>sudo mysql -u root
+</code></pre>
+<p><img alt="" src="" /></p>
+<p>Crearemos la base de datos para wordpress:</p>
+<pre><code>CREATE DATABASE wordpress;
+CREATE USER wordpress@localhost IDENTIFIED BY '&lt;tu-contraseña&gt;';
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+    ON wordpress.*
+    TO wordpress@localhost;
+FLUSH PRIVILEGES;
+quit
+</code></pre>
+<p><img alt="crear usuario en wordpress" src="../crear-usu-wp.png" /></p>
+<p>Habilitamos MySQL:</p>
+<pre><code>sudo service mysql start
+</code></pre>
+<p><img alt="habilitar mysql" src="../start-mysql.png" /></p>
+<hr />
+<h2 id="configurar-wordpress-para-conectarse-a-la-base-de-datos">Configurar WordPress para conectarse a la base de datos</h2>
+<p>Configuremos WordPress para usar esta base de datos.
+Copia el archivo de configuración de muestra "<em>wp-config-sample.php</em>"a "<em>wp-config.php</em>":</p>
+<pre><code>cd /srv/www/wordpress
+sudo -u www-data cp wp-config-sample.php wp-config.php
+</code></pre>
+<p><img alt="copiar archivo de config de muestra" src="../cp-archivo.png" /></p>
+<p>Establecemos las credenciales de la base de datos en el archivo de configuración:</p>
+<pre><code>sudo -u www-data sed -i 's/data_base_name_here/wordpress/' /srv/www/wordpress/wp-config.php
+sudo -u www-data sed -i 's/username_here/wordpress/' /srv/www/wordpress/wp-config.php
+sudo -u www-data sed -i 's/password_here/&lt;tu-contraseña&gt;/' /srv/www/wordpress/wp-config.php
+</code></pre>
+<p><em>Remplazaremos "tu-contraseña" por ls contraseña de la base de datos. En mi caso es: Wordpress1</em>
+<img alt="poner credenciales la base de datos" src="../credenciales-database.png" /></p>
+<p>Iniciamos sesión desde la terminal al archivo de configuración:</p>
+<pre><code>sudo -u www-data nano /srv/www/wordpress/wp-config.php
+</code></pre>
+<p>Buscaremos las siguientes lineas y las editaremos poniendo lo siguiente:</p>
+<pre><code>define( 'AUTH_KEY',         ')@n$*|p6+&gt;Wo?~gum&lt;}s@dU;_lg|1)H|u2gA]lRf[ Z@|D|-:^?yo}z~^9QK;^7!' );
+define( 'SECURE_AUTH_KEY',  'u7s} L]`|!z}BIgW*VmP0[I[m2lrT!RJa-+Gv!MBTZSjL=8?41q+$9vo6_E#2a$P' );
+define( 'LOGGED_IN_KEY',    '/M|NLLsceq,{D*[YcagBEk-#{_m=N,Q}@S5fvXpqAP!z`s)b|&amp;VU4E|I|]|- ho+' );
+define( 'NONCE_KEY',        '$T&gt;tanzlP]O]nd0`-;@X!&lt;=/MGE)v6*}(^bJ|LleVQFjhKCUM?v4whPV3_eJ{!{&gt;' );
+define( 'AUTH_SALT',        'S($ n4uB*;FvZrTt-|y|`dcv-@n.ekq,0E*jK~R{zP6(YpvKHoU(;7f(~$nLJXui' );
+define( 'SECURE_AUTH_SALT', 'v=#DY[Y?`U3[=U+G6[ugqP(6b;34YTc.70+y9+fFYBr2.2-,D?R}okt28l0[m9:{' );
+define( 'LOGGED_IN_SALT',   'TX/)e] =1&amp;Qr$Hm&amp;].+-9w%X|DEG)e9C1R|of)?0XuZg](v;V/+DA2h(0E?+id3M' );
+define( 'NONCE_SALT',       '`3bW?83^pcJP6i12/c|nf(=)l_!bQ?t-r`lt5:VA+5|Jq{ee&gt;%?7i/XnxkB@}tl_' );
+</code></pre>
+<p><img alt="" src="../wp-config.php.png" /></p>
+<hr />
+<h2 id="configurar-wordpress">Configurar WordPress</h2>
+<p>Abrimos nuestro navegador y ponemos lo siguiente:</p>
+<pre><code>http://localhost/
+</code></pre>
+<p>Nos pedirá:</p>
+<ul>
+<li>Título de tu nuevo sitio</li>
+<li>Nombre de usuario</li>
+<li>Contraseña</li>
+<li>Dirección de correo electrónico</li>
+</ul>
+<p>Ten en cuenta que el nombre de usuario y la contraseña que elijamos aquí
+son para WordPress, y no proporcionan acceso a ninguna otra parte de tu servidor.</p>
+<p>Elegimos un nombre de usuario y contraseña diferentes de las credenciales de MySQL y
+de las credenciales para iniciar sesión en el equipo o escritorio o shell del servidor.
+<img alt="" src="" /></p>
+<ul>
+<li>Ahora ya podemos iniciar sesión:</li>
+</ul>
+<pre><code>http://localhost/wp-login.php
+</code></pre>
+<p><img alt="" src="" /></p>
+<hr />
+<h2 id="escribe-tu-primera-publicacion">Escribe tu primera publicación</h2>
+<h3 id="todas-las-publicaciones">Todas las publicaciones</h3>
+<p>Desde el Panel de control (http://localhost/wp-admin/),
+selecciona el ícono “Publicaciones” y haz clic en “Todas las publicaciones”.
+Pasa el ratón sobre el título de la publicación “¡Hola mundo!” y selecciona Papelera.
+<img alt="" src="" /></p>
+<h3 id="mover-a-la-papelera">Mover a la papelera</h3>
+<p>Para crear una nueva publicación, haz clic en el botón “Añadir nueva”.
+Escribe lo que quieras poner.
+<img alt="" src="" /></p>
+<h3 id="primera-publicacion">Primera publicación</h3>
+<p>Haz clic en el botón "<em>Publicar</em>". ¡Ahora puedes ver tu nueva publicación!
+<img alt="" src="" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../Practica3/" class="btn btn-neutral float-left" title="Instalar, configurar y securizar phpMyAdmin"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../Practica3/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
