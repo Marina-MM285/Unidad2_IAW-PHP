@@ -71,16 +71,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#configurar-wordpress">Configurar WordPress</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#escribe-tu-primera-publicacion">Escribe tu primera publicación</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#todas-las-publicaciones">Todas las publicaciones</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mover-a-la-papelera">Mover a la papelera</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#primera-publicacion">Primera publicación</a>
-    </li>
-        </ul>
-    </li>
     </ul>
                   </li>
               </ul>
@@ -214,10 +204,10 @@ bind-address = 0.0.0.0
 <img alt="bind editado" src="../bind.png" /></p>
 <p><em>Antes de seguir nos aseguramos de que tenemos el mysql-client instalado o no podremos hacer los siguientes pasos</em></p>
 <p><img alt="instalar mysql-client" src="../mysql-client.png" /></p>
-<p>Una vez arrancado el segundo servidor, iniciamos sesión en MySQL:</p>
+<p>Iniciamos sesión en MySQL:</p>
 <pre><code>sudo mysql -u root
 </code></pre>
-<p><img alt="" src="" /></p>
+<p><img alt="" src="../acceder-mysql-u.png" /></p>
 <p>Crearemos la base de datos para wordpress:</p>
 <pre><code>CREATE DATABASE wordpress;
 CREATE USER wordpress@localhost IDENTIFIED BY '&lt;tu-contraseña&gt;';
@@ -228,6 +218,7 @@ FLUSH PRIVILEGES;
 quit
 </code></pre>
 <p><img alt="crear usuario en wordpress" src="../crear-usu-wp.png" /></p>
+<p><img alt="base de datos creada" src="../bd-creada.png" /></p>
 <p>Habilitamos MySQL:</p>
 <pre><code>sudo service mysql start
 </code></pre>
@@ -263,9 +254,12 @@ define( 'NONCE_SALT',       '`3bW?83^pcJP6i12/c|nf(=)l_!bQ?t-r`lt5:VA+5|Jq{ee&gt
 <p><img alt="" src="../wp-config.php.png" /></p>
 <hr />
 <h2 id="configurar-wordpress">Configurar WordPress</h2>
-<p>Abrimos nuestro navegador y ponemos lo siguiente:</p>
-<pre><code>http://localhost/
+<p>Abrimos nuestro navegador y ponemos lo siguiente para conectarnos al servidor donde tenemos la base de datos:</p>
+<pre><code>http://10.10.10.40/
 </code></pre>
+<p><img alt="" src="../ip-server.png" /></p>
+<p>He tenido un problema y me sale un error</p>
+<p><img alt="" src="../problema.png" /></p>
 <p>Nos pedirá:</p>
 <ul>
 <li>Título de tu nuevo sitio</li>
@@ -281,23 +275,9 @@ de las credenciales para iniciar sesión en el equipo o escritorio o shell del s
 <ul>
 <li>Ahora ya podemos iniciar sesión:</li>
 </ul>
-<pre><code>http://localhost/wp-login.php
+<pre><code>http://10.10.10.40/wp-login.php
 </code></pre>
-<p><img alt="" src="" /></p>
-<hr />
-<h2 id="escribe-tu-primera-publicacion">Escribe tu primera publicación</h2>
-<h3 id="todas-las-publicaciones">Todas las publicaciones</h3>
-<p>Desde el Panel de control (http://localhost/wp-admin/),
-selecciona el ícono “Publicaciones” y haz clic en “Todas las publicaciones”.
-Pasa el ratón sobre el título de la publicación “¡Hola mundo!” y selecciona Papelera.
-<img alt="" src="" /></p>
-<h3 id="mover-a-la-papelera">Mover a la papelera</h3>
-<p>Para crear una nueva publicación, haz clic en el botón “Añadir nueva”.
-Escribe lo que quieras poner.
-<img alt="" src="" /></p>
-<h3 id="primera-publicacion">Primera publicación</h3>
-<p>Haz clic en el botón "<em>Publicar</em>". ¡Ahora puedes ver tu nueva publicación!
-<img alt="" src="" /></p>
+<p><img alt="" src="../problema.png" /></p>
               
             </div>
           </div><footer>
