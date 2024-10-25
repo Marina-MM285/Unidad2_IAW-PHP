@@ -2,10 +2,11 @@
 
 ## Prerrequisitos
 Antes de instalar PHP, deberías instalar:
+
 * Apache (hecho en la práctica anterior)
 * MySQL
-  * sudo apt update
-  * sudo apt install mysql-server
+    * sudo apt update
+    * sudo apt install mysql-server
 
 ![mysql](mysql-server.png)
 
