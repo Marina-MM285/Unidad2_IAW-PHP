@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Instalar y configurar WordPress - IAW</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Instalar y configurar WordPress";
+        var mkdocs_page_input_path = "Practica5/index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IAW
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Repositorio de Marina</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Practica2</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Practica2/">Creación y configuración de un certificado SSL/TLS autofirmado en Apche</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Practica3</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Practica3/">Instalar, configurar y securizar phpMyAdmin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Practica4</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Practica4/idex/">Instalar y configurar WordPress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Practica5</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Instalar y configurar WordPress</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requisitos">Requisitos</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#instalacion-de-maquinas">Instalación de máquinas</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dominios-a-usar">Dominios a usar</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instalamos-el-servidor-web-apache">Instalamos el servidor web Apache</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuracion-del-primer-servidor-bakend-apache-web1">Configuración del Primer servidor Bakend Apache --&gt; WEB1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuracion-del-segundo-servidor-bakend-apache-web2">Configuración del Segundo servidor Bakend Apache --&gt; WEB2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creacion-de-un-balanceador-de-carga-apache">Creación de un Balanceador de Carga Apache</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuracion-de-la-politica-de-balanceo-de-carga">Configuración de la Política de Balanceo de Carga</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verificar-el-balanceo-de-carga-con-apache">Verificar el Balanceo de Carga con Apache</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IAW</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Practica5</li>
+      <li class="breadcrumb-item active">Instalar y configurar WordPress</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="instalar-y-configurar-wordpress">Instalar y configurar WordPress</h1>
+<h2 id="requisitos">Requisitos</h2>
+<p>Antes de empezar la practica necesitamos saber lo siguiente:</p>
+<h3 id="instalacion-de-maquinas">Instalación de máquinas</h3>
+<p>Instalamos 3 máquinas virtuales Ubuntu Server 22.04
+Usaremos el usuario root o un usuario con privilegios sudo</p>
+<h3 id="dominios-a-usar">Dominios a usar</h3>
+<p>Usaremos los siguientes dominio con las siguiente estructura:</p>
+<ul>
+<li>balancer.iaw2425.com</li>
+<li>web1i.aw2425.com</li>
+<li>web2.iaw2425.com</li>
+</ul>
+<p><img alt="esquema practica5" src="esquema-pr5.png" /></p>
+<hr />
+<h2 id="instalamos-el-servidor-web-apache">Instalamos el servidor web Apache</h2>
+<p>Verificamos el estado del servidor Apache:</p>
+<pre><code>systemctl status apache2
+
+</code></pre>
+<p><img alt="sin instalar" src="status-sin-inst.png" /></p>
+<p>En caso de que no esté instalado lo instalamos:</p>
+<pre><code>sudo apt update
+sudo apt install apache2
+</code></pre>
+<p><img alt="instalación apache2" src="inst-apache2.png" /></p>
+<p><em>Todo esto teniendo en cuenta que hay que hacerlo en todos los servidores (los 3 que tenemos que configurar)</em></p>
+<hr />
+<h2 id="configuracion-del-primer-servidor-bakend-apache-web1">Configuración del Primer servidor Bakend Apache --&gt; WEB1</h2>
+<p>Creamos una páquina HTML de muestra en el servidor apache "web1" donde pondremos el siguiente código:</p>
+<pre><code>cd /var/www/html/
+sudo nano web1.html
+</code></pre>
+<p><img alt="creación del html" src="web1-html.png" /></p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;title&gt;Servidor Web Apache 1&lt;/title&gt;
+&lt;h2&gt;¡Esta es la página del Servidor Web Apache 1!&lt;/h2&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img alt="archivo web1 html" src="web1-archivo.png" /></p>
+<p>A continuación, dentro del servidor apache "web1", copiamos el archivo de configuración de host virtual y cambiamos las siguientes configuraciones:</p>
+<pre><code>cd /etc/apache2/sites-enabled/
+sudo cp 000-default.conf web1.conf
+sudo nano web1.conf
+</code></pre>
+<p><img alt="" src="web1-conf.png" /></p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName web1.iaw2425.com
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    DirectoryIndex web1.html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<p><img alt="archivo web1.con" src="web1-conf-archivo.png" /></p>
+<p>Reiniciamos el servicio de apache:</p>
+<pre><code>sudo systemctl restart apache2
+sudo systemctl status apache2
+</code></pre>
+<p><img alt="reinicio y estado de apache" src="restart-status-apache2.png" /></p>
+<hr />
+<h2 id="configuracion-del-segundo-servidor-bakend-apache-web2">Configuración del Segundo servidor Bakend Apache --&gt; WEB2</h2>
+<p>Creamos una páquina HTML de muestra en el servidor apache "web2" donde pondremos el siguiente código:</p>
+<pre><code>cd /var/www/html/
+sudo nano web2.html
+</code></pre>
+<p><img alt="" src="web2-html.png" /></p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;title&gt;Servidor Web Apache 2&lt;/title&gt;
+&lt;h2&gt;¡Esta es la página del Servidor Web Apache 2!&lt;/h2&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img alt="" src="archivo-web2-html.png" /></p>
+<p>A continuación, dentro del servidor apache "web2", creamos el archivo de configuración de host virtual con las siguientes configuraciones:</p>
+<pre><code>cd /etc/apache2/sites-enabled/
+sudo cp 000-default.conf web1.conf
+sudo nano web2.conf
+</code></pre>
+<p><img alt="" src="web2-conf.png" /></p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName web2.iaw2425.com
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    DirectoryIndex web2.html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<p><img alt="" src="archivo-web2-conf.png" /></p>
+<p>Reiniciamos el servicio de apache:</p>
+<pre><code>systemctl restart apache2
+systemctl status apache2
+</code></pre>
+<p><img alt="" src="restart-status-apache2.png" /></p>
+<hr />
+<h2 id="creacion-de-un-balanceador-de-carga-apache">Creación de un Balanceador de Carga Apache</h2>
+<p>Configuramos el tercer servidor como un servidor de balanceo de carga para redirigir el tráfico a los dos servidoires web backend que hemos creado en los pasos anteriores.</p>
+<p>Habilitamos los modulos proxy en el servidor de balanceo de carga:</p>
+<pre><code>sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod proxy_balancer
+sudo a2enmod lbmethod_byrequests
+</code></pre>
+<p><img alt="" src="habilitar-proxy.png" /></p>
+<p>Reiniciamos el servicio de apache:</p>
+<pre><code>systemctl restart apache2
+systemctl status apache2
+</code></pre>
+<p><img alt="" src="restart-status-apache2.png" /></p>
+<p>Verificamos todos los módulos proxy:</p>
+<pre><code>apachectl -M | grep proxy
+</code></pre>
+<p><img alt="" src="modulos-proxy.png" /></p>
+<p>Creamos un archivo de configuración de Apache para el balanceo de carga y le añadimos lo siguiente:</p>
+<pre><code>cd /etc/apache2/sites-enabled/
+sudo nano loadbalancer.conf
+</code></pre>
+<p><img alt="" src="loadbalancer.png" /></p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName balancer.iaw2425.com
+    &lt;Proxy balancer://webserver&gt;
+        # servidor 1
+        BalancerMember http://web1.iaw2425.com
+        #BalancerMember http://IP_HTTP_SERVER_1:80
+
+        #servidor 2
+        BalancerMember http://web2.iaw2425.com
+        #BalancerMember http://IP_HTTP_SERVER_1:80
+
+        ProxySet stickysession=ROUTEID
+    &lt;/Proxy&gt;
+    ProxyPreserveHost On
+    ProxyPass / balancer://webserver/
+    ProxyPassReverse / balancer://webserver/
+&lt;/VirtualHost&gt;
+</code></pre>
+<p><img alt="" src="loadbalancer-conf.png" /></p>
+<hr />
+<h2 id="configuracion-de-la-politica-de-balanceo-de-carga">Configuración de la Política de Balanceo de Carga</h2>
+<p>Para configurar la política de balanceo de carga necesitamos tener el módulo <strong>proxy_balancer</strong> activado:</p>
+<pre><code>sudo a2enmod proxy_balancer
+</code></pre>
+<p><img alt="" src="proxy-balancer.png" /></p>
+<p>El tipo de balanceo de carga que vamos a usar en esta práctica será un balanceo de tipo <strong>Round Robin</strong>.</p>
+<p><strong>Round Robin</strong></p>
+<ul>
+<li>Este método consiste en distribuir las peticiones entre los servidores de forma que cada vez que llegue una nueva petición se envía al siguiente servidor de la lista de servidores configurados en el servidor Apache.Este método es simple y fácil de configurar, pero no es efectivo para la alta disponibilidad y la escalabilidad.</li>
+</ul>
+<p>Para activar este método de balanceo tenemos que activar el siguiente módulo:</p>
+<pre><code>sudo a2enmod lbmethod_byrequests
+</code></pre>
+<p><img alt="" src="lbmethod-byrequest.png" /></p>
+<p>Reiniciamos el servicio de apache:</p>
+<pre><code>systemctl restart apache2
+systemctl status apache2
+</code></pre>
+<p><img alt="" src="restart-status-apache2.png" /></p>
+<hr />
+<h2 id="verificar-el-balanceo-de-carga-con-apache">Verificar el Balanceo de Carga con Apache</h2>
+<p>Abrimos nuestro navegador y accedemos al balanceador de carga:</p>
+<pre><code>http://balancer.iaw2425.com
+</code></pre>
+<p>Espera un tiempo y actualiza la página. Esta vez, deberías ver la página HTML de muestra de tu segundo servidor backend.</p>
+<p><img alt="" src="error.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Practica4/idex/" class="btn btn-neutral float-left" title="Instalar y configurar WordPress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Practica4/idex/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
