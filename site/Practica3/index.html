@@ -141,20 +141,24 @@ phpinfo();
 </ul>
 <p><img alt="php-funciona" src="funciona-php.png" /></p>
 <ol>
-<li>Configurar phpMyAdmin para que funcione con Apache.</li>
+<li>Configurar phpMyAdmin para que funcione con Apache.<ul>
 <li>sudo apt install phpmyadmin</li>
+</ul>
+</li>
 </ol>
 <p>Para configurarlo correctamente elejiremnos las siguientes opciones:</p>
 <ul>
 <li>apache2 --&gt; para el servidor</li>
 <li>sí --&gt; cuando nos pregunte si queremos usar dbconfig-common para configurar la base de datos</li>
 <li>Asignaremos una contraseña, en mi caso le he puesto:<ul>
-<li>phpmyadmin<blockquote>
-<p>En mi caso la instalación ya estaba hecha, no he podido poner capturas.</p>
-</blockquote>
-</li>
+<li>phpmyadmin</li>
 </ul>
 </li>
+</ul>
+<blockquote>
+<p><em>En mi caso la instalación ya estaba hecha, no he podido poner capturas.</em></p>
+</blockquote>
+<ul>
 <li>Vamos a habilitar el archivo de configuración de phpmyadmin<ul>
 <li>cd /etc/phpmyadmin/apache.conf</li>
 <li>sudo cp apache.conf /etc/conf-available/phpmyadmin.conf</li>
@@ -164,24 +168,34 @@ phpinfo();
 </ul>
 <p><img alt="copiar" src="copiar-apache.conf.png" />
 <img alt="habilitar" src="habilitar-phpmyadmin.conf.png" /></p>
-<p>. Habilita la extensión mbstring y reinicia Apache
-  * sudo phpenmod mbstring
-  * sudo systemctl restart apache</p>
+<ul>
+<li>Habilita la extensión mbstring y reinicia Apache<ul>
+<li>sudo phpenmod mbstring</li>
+<li>sudo systemctl restart apache</li>
+</ul>
+</li>
+</ul>
 <p><img alt="habilitar mbstring" src="habilitar-mbstring.png" /></p>
 <hr />
 <h2 id="configuracion-del-acceso-por-contrasena-para-la-cuenta-root-de-mysql">Configuración del Acceso por Contraseña para la Cuenta Root de MySQL</h2>
 <ol>
-<li>Cambia el método de autenticación del usuario root de MySQL (de auth_socket a caching_sha2_password o mysql_native_password)</li>
+<li>Cambia el método de autenticación del usuario root de MySQL (de auth_socket a caching_sha2_password o mysql_native_password)<ul>
 <li>sudo mysql</li>
 <li>select user,host,authentication_string,plugin from mysql.user;</li>
+</ul>
+</li>
 </ol>
-<p><img alt="select" src="select.png" />
-  * alter user 'root'@'localhost' identified with 'mysql_native_password' by 'root';</p>
+<p><img alt="select" src="select.png" /></p>
+<ul>
+<li>alter user 'root'@'localhost' identified with 'mysql_native_password' by 'root';</li>
+</ul>
 <p><img alt="cambio de contraseña" src="contrase%C3%B1a-mysql-root.png" /></p>
 <ol>
-<li>Verificar los métodos de autenticación empleados por cada uno de tus usuarios.</li>
+<li>Verificar los métodos de autenticación empleados por cada uno de tus usuarios.<ul>
 <li>Entraremos introduciendo la contraseña que le hemos asignado en el paso anterior con el comando:<ul>
 <li>sudo mysql -u root -p</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -189,13 +203,17 @@ phpinfo();
 <hr />
 <h2 id="configuracion-del-acceso-por-contrasena-para-un-usuario-dedicado-de-mysql">Configuración del Acceso por Contraseña para un Usuario Dedicado de MySQL</h2>
 <ol>
-<li>Crear un nuevo usuario de MySQL con una contraseña segura.</li>
+<li>Crear un nuevo usuario de MySQL con una contraseña segura.<ul>
 <li>create user 'marina'@'localhost' identified with 'mysql_native_password' by 'phpmyadmin'; </li>
+</ul>
+</li>
 </ol>
 <p><img alt="nuevo usuario en mysql" src="nuevo-user-mysql.png" /></p>
 <ol>
-<li>Otorgar al nuevo usuario los privilegios apropiados para gestionar las bases de datos a través de phpMyAdmin</li>
+<li>Otorgar al nuevo usuario los privilegios apropiados para gestionar las bases de datos a través de phpMyAdmin<ul>
 <li>grant all privileges on <em>.</em> to 'marina'@'localhost' with grant option;</li>
+</ul>
+</li>
 </ol>
 <p><img alt="dar privilegios" src="privilegios.png" /></p>
 <ul>
@@ -224,11 +242,13 @@ phpinfo();
 </code></pre>
 <p><img alt="php.conf mod" src="modificado-php.conf.png" /></p>
 <ol>
-<li>Crear un archivo <strong>.htaccess</strong> en el directorio de phpMyAdmin para implementar autenticación básica.</li>
+<li>Crear un archivo <strong>.htaccess</strong> en el directorio de phpMyAdmin para implementar autenticación básica.<ul>
 <li>Creamos el archivo y lo editamos<ul>
 <li>cd /usr/share/phpmyadmin</li>
 <li>sudo nano .htaccess</li>
 <li>Tendria que quedar de la siguiente forma:</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -239,17 +259,21 @@ phpinfo();
 </code></pre>
 <p><img alt="htacces editado" src=".htacces-editado.png" /></p>
 <ol>
-<li>Crear un archivo <strong>.htpasswd</strong> para almacenar las credenciales de usuario y contraseña.</li>
+<li>Crear un archivo <strong>.htpasswd</strong> para almacenar las credenciales de usuario y contraseña.<ul>
 <li>sudo htpasswd -c /etc/phpmyadmin/.htpasswd phpmyadmin<ul>
 <li>phpmyadmin_htaccess</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
 <p><img alt="contraseña htacces" src="contra-htacces.png" /></p>
 <ol>
-<li>Reiniciar Apache para aplicar los cambios.</li>
+<li>Reiniciar Apache para aplicar los cambios.<ul>
 <li>sudo systemctl restart apache2</li>
 <li>sudo systemctl status apache2</li>
+</ul>
+</li>
 </ol>
 <p><img alt="restart-status" src="restart-status-apache.png" /></p>
 <h2 id="comprovar-que-funciona">Comprovar que funciona</h2>
